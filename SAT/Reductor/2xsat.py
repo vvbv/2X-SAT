@@ -1,4 +1,3 @@
-import tools
 from SAT import SAT, NextSAT
 
 # Transformación SAT a 3SAT
@@ -16,19 +15,19 @@ from SAT import SAT, NextSAT
 # si K>3, se crean k-3 variables y k-2 cláusulas
 
 
-def satTo3SAT(SAT:obj)->NextSAT:
+def satTo3SAT(obj: SAT)->NextSAT:
     #
     pass
 
-def nextSAT(NextSAT:obj)->NextSAT:
+def nextSAT(obj: NextSAT)->NextSAT:
     for clause in NextSAT.clauses:
         pass
 
-def toXSAT(SAT:obj, x):
+def toXSAT(obj: SAT, x):
 
     if x == 0:
         return obj
-    elif true: #SAT
+    elif True: #SAT
         return toXSAT( satTo3SAT(obj), x-2)
-    else if true:
+    elif True:
         return toXSAT( nextSAT(obj), x-1)

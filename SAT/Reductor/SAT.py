@@ -1,53 +1,58 @@
 class SATvar:
 
-    def __init__(self, name):
+    def __init__(self, name: str, value: bool):
         self.name = name
-
+        self.value = value
+        
     @property
-    def name()->str:
+    def name(self) -> str:
         return self._name
-
+    
     @name.setter
-    def name(str:name):
-        self._name = name
+    def name(self, value:str):
+        self._name = value
 
     @property
-    def value():
+    def value(self) -> bool:
         return self._value
+    
+    @value.setter
+    def value(self, value: bool):
+        self._value = value
 
 
 class Clause:
 
-    def __init__(self, list:vars):
+    def __init__(self, vars: list):
         self.vars = vars
 
     @property
-    def vars()->list:
-        return _vars
+    def vars(self) -> list:
+        return self._vars
 
     @vars.setter
-    def vars(list:vars):
-        self._vars = vars
+    def vars(self, value: list):
+        self._vars = value
 
 
 class SAT:
 
-    def __init__(self, list:clauses):
-        self.clauses = test
+    def __init__(self, clauses: list):
+        self.clauses = clauses if clauses else []
 
     @property
-    def clauses(self)->list:
+    def clauses(self) -> list:
         return self._clauses
 
-    @test.setter
-    def clauses(self, list:clauses):
-        self._clauses = clauses
+    @clauses.setter
+    def clauses(self, value: list):
+        self._clauses = value
 
-    def add_clause():
-        pass
+    def add_clause(self, clause:list):
+        self._clauses.append(clause)
 
 
 class NextSAT(SAT):
 
-    def __init__(self, arg):
-        pass
+    def __init__(self, clauses: list):
+        super(NextSAT, self).__init__(clauses)

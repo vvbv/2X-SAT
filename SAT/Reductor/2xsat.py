@@ -1,9 +1,10 @@
+import tools
 from SAT import SAT, NextSAT
 
 # Transformación SAT a 3SAT
 
 ### Primer condición:
-# si K=1, se crean 2 variables y 4 cláusulas nuevas
+# si K=1, se crean 2 variables nuevas
 
 ### Segunda condición:
 # si K=2, se crean 1 variable y 2 cláusulas nuevas

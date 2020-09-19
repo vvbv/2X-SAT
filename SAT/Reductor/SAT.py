@@ -1,7 +1,33 @@
+class SATvar:
+
+    def __init__(self, name):
+        self.name = name
+
+    @property
+    def name()->str:
+        return self._name
+
+    @name.setter
+    def name(str:name):
+        self._name = name
+
+    @property
+    def value():
+        return self._value
+
+
 class Clause:
 
-    def __init__():
-        pass
+    def __init__(self, list:vars):
+        self.vars = vars
+
+    @property
+    def vars()->list:
+        return _vars
+
+    @vars.setter
+    def vars(list:vars):
+        self._vars = vars
 
 
 class SAT:
@@ -20,26 +46,8 @@ class SAT:
     def add_clause():
         pass
 
+
 class NextSAT(SAT):
 
     def __init__(self, arg):
         pass
-
-
-def satTo3SAT(SAT:obj)->NextSAT:
-    pass
-
-def nextSAT(NextSAT:obj)->NextSAT:
-    for clause in NextSAT.clauses:
-        pass
-
-def toXSAT(SAT:obj, x):
-
-    if x == 0:
-        return obj
-
-    for i in range(0,x):
-        if true: #SAT
-            return toXSAT( satTo3SAT(obj), x-1)
-        else:
-            return toXSAT( nextSAT(obj), x-1)

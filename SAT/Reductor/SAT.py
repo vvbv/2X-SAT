@@ -1,24 +1,25 @@
 class SATvar:
 
-    def __init__(self, name: str, value: bool):
-        self.name = name
-        self.value = value
+    def __init__(self, value: str):
+        # self.name = name
+        # self.value = value
         
-    @property
-    def name(self) -> str:
-        return self._name
-    
-    @name.setter
-    def name(self, value:str):
-        self._name = value
-
-    @property
-    def value(self) -> bool:
-        return self._value
-    
-    @value.setter
-    def value(self, value: bool):
-        self._value = value
+    # @property
+    # def name(self) -> str:
+    #     return self._name
+    #
+    # @name.setter
+    # def name(self, value:str):
+    #     self._name = value
+    #
+    # @property
+    # def value(self) -> bool:
+    #     return self._value
+    #
+    # @value.setter
+    # def value(self, value: bool):
+    #     self._value = value
+        pass
 
 
 class Clause:
@@ -32,7 +33,7 @@ class Clause:
 
     @vars.setter
     def vars(self, value: list):
-        self._vars = value
+        self._vars = map(lambda value: SATvar(value),value)
 
 
 class SAT:

@@ -16,7 +16,6 @@ from SAT import SAT, NextSAT
 
 
 def satTo3SAT(obj: SAT)->NextSAT:
-    #
     pass
 
 def nextSAT(obj: NextSAT)->NextSAT:

@@ -91,6 +91,12 @@ class SAT:
                 self.vars.append(clause_var)
         self._clauses.append(clause)
 
+    def isSAT(self):
+        return True
+
+    def isXSAT(self):
+        return False
+
     def __str__(self):
         to_return = ""
         for clause in self._clauses:
@@ -102,5 +108,11 @@ class NextSAT(SAT):
 
     def __init__(self, clauses: list):
         super(NextSAT, self).__init__(clauses)
+
+    def isSAT(self):
+        return False
+
+    def isXSAT(self):
+        return True
 
 

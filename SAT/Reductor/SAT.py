@@ -11,6 +11,9 @@ class SATvar:
     def name(self, value:str):
         self._name = value
 
+    def getLiteralString(self, negated):
+        return "-" + self.name if negated else self.name
+
 
 class SATLiteral(SATvar):
 
@@ -25,6 +28,9 @@ class SATLiteral(SATvar):
     @value.setter
     def value(self, value: bool):
         self._value = value
+
+    def getLiteralString(self):
+        return "-" + self.name if not self.value else self.name
 
 
 class Clause:

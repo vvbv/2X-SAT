@@ -1,4 +1,6 @@
 import os
+from SAT import SAT, Clause
+
 
 def readFile(path: str):
     if not (os.path.isfile(path)):
@@ -10,14 +12,19 @@ def readFile(path: str):
             satInstance.append(getClauseFromLine(line))
     return satInstance
 
+
 def getClauseFromLine(line: str):
     satClause = line.replace('\n', '').replace(' 0', '').split(' ')
-    while("" in satClause):
+    while "" in satClause:
         satClause.remove("")
     return satClause
+
 
 def isNotClauseLine(line: str):
     return not line.startswith("c") and not line.startswith("p")
 
+
 def parseFile(path):
-    pass
+    clauses = list(map(lambda str_clause: Clause(str_clause), readFile(path)))
+    sat = SAT(clauses)
+    return sat

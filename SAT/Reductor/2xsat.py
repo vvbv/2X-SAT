@@ -1,4 +1,5 @@
-from SAT import SAT, NextSAT
+from SAT import SAT, NextSAT, Clause
+from tools import parseFile
 
 # Transformación SAT a 3SAT
 
@@ -14,6 +15,8 @@ from SAT import SAT, NextSAT
 ### Última condición:
 # si K>3, se crean k-3 variables y k-2 cláusulas
 
+sat = parseFile('../InstanciasSAT/jnh1.cnf')
+print(sat.clauses.__len__())
 
 def satTo3SAT(obj: SAT)->NextSAT:
     pass

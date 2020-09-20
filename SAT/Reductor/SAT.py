@@ -52,7 +52,7 @@ class Clause:
             self.vars.append(var)
 
     def __str__(self):
-        to_return = "(";
+        to_return = "("
         for literal in self.literals:
             to_return = to_return + ("-" if not literal.value else "") + str(literal.name) + " ∨ "
         return to_return[:-3] + ")"
@@ -60,6 +60,7 @@ class Clause:
 class SAT:
 
     def __init__(self, clauses: list):
+        self.vars = []
         self.clauses = clauses if clauses else []
 
     @property
@@ -67,11 +68,28 @@ class SAT:
         return self._clauses
 
     @clauses.setter
-    def clauses(self, value: list):
-        self._clauses = value
+    def clauses(self, clauses: list):
+        self._clauses = []
+        for clause in clauses:
+            self.add_clause(clause)
 
-    def add_clause(self, clause:list):
+    def add_clause(self, clause):
+        clause_vars = clause.vars
+        for clause_var in clause_vars:
+            add = True
+            for var in self.vars:
+                if clause_var.name == var.name:
+                    add = False
+                    break
+            if add:
+                self.vars.append(clause_var)
         self._clauses.append(clause)
+
+    def __str__(self):
+        to_return = ""
+        for clause in self._clauses:
+            to_return = to_return + str(clause) + " ^ "
+        return to_return[:-3]
 
 
 class NextSAT(SAT):
@@ -79,6 +97,4 @@ class NextSAT(SAT):
     def __init__(self, clauses: list):
         super(NextSAT, self).__init__(clauses)
 
-
-print( Clause(['-a','b','-c', 'a']) )
 

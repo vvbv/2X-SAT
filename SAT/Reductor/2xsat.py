@@ -101,8 +101,6 @@ class TwoXSAT:
 #print(sat)
 
 
-
-
 sat = parseFile('../InstanciasSAT/jnh1.cnf')
 # print(satTo3SAT(sat))
 # print(nextSAT(sat))

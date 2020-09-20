@@ -1,8 +1,7 @@
 class SATvar:
 
     def __init__(self, var_str: str):
-        self.value = False if var_str[0] == '-' else True
-        self.name = var_str if self.value else var_str.replace('-','')
+        self.name = var_str.replace('-','') if '-' in var_str else var_str
 
     @property
     def name(self) -> str:
@@ -11,6 +10,13 @@ class SATvar:
     @name.setter
     def name(self, value:str):
         self._name = value
+
+
+class SATLiteral(SATvar):
+
+    def __init__(self, var_str: str):
+        super(SATLiteral, self).__init__(var_str)
+        self.value = False if '-' in var_str else True
 
     @property
     def value(self) -> bool:
@@ -24,17 +30,20 @@ class SATvar:
 class Clause:
 
     def __init__(self, literals: list):
-        self.literals = literals
-        self.var_names = []
         self.vars = []
+        self.var_names = []
+        self.literals = literals
 
     @property
     def literals(self) -> list:
         return self._literals
 
     @literals.setter
-    def literals(self, value: list):
-        self._literals = list(map(lambda value: SATvar(value),value))
+    def literals(self, literals: list):
+        self._literals = []
+        for literal in literals:
+            self._literals.append(SATLiteral(literal))
+            self.add_var(literal)
         
     def add_var(self, var_str):
         var = SATvar(var_str)
@@ -42,6 +51,11 @@ class Clause:
             self.var_names.append(var.name)
             self.vars.append(var)
 
+    def __str__(self):
+        to_return = "(";
+        for literal in self.literals:
+            to_return = to_return + ("-" if not literal.value else "") + str(literal.name) + " ∨ "
+        return to_return[:-3] + ")"
 
 class SAT:
 
@@ -65,4 +79,6 @@ class NextSAT(SAT):
     def __init__(self, clauses: list):
         super(NextSAT, self).__init__(clauses)
 
-clause = Clause(['-1','2','-5'])
+
+print( Clause(['-a','b','-c', 'a']) )
+

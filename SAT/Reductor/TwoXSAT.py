@@ -1,5 +1,4 @@
 from SAT import SAT, NextSAT, Clause
-from tools import parseFile
 
 # Transformación SAT a 3SAT
 
@@ -14,6 +13,7 @@ from tools import parseFile
 
 ### Última condición:
 # si K>3, se crean k-3 variables y k-2 cláusulas
+
 
 class TwoXSAT:
 
@@ -91,17 +91,10 @@ class TwoXSAT:
             return self.toXSAT(self.nextSAT(obj), x - 1)
 
     # Example
-    #sat = parseFile('../InstanciasSAT/jnh1.cnf')
+    # sat = parseFile('../InstanciasSAT/jnh1.cnf')
     # sat = SAT(
     #     [
     #         Clause(['-g','t','s']),
     #         Clause(['g','-t','-s'])
     #     ]
     # )
-
-
-
-sat = parseFile('../InstanciasSAT/test.cnf')
-
-twoXSAT = TwoXSAT()
-print(twoXSAT.toXSAT(sat,5))

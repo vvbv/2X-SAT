@@ -90,24 +90,18 @@ class TwoXSAT:
         elif obj.isXSAT():
             return self.toXSAT(self.nextSAT(obj), x - 1)
 
-#sat = parseFile('../InstanciasSAT/jnh1.cnf')
-# sat = SAT(
-#     [
-#         Clause(['-g','t','s']),
-#         Clause(['g','-t','-s'])
-#     ]
-# )
+    # Example
+    #sat = parseFile('../InstanciasSAT/jnh1.cnf')
+    # sat = SAT(
+    #     [
+    #         Clause(['-g','t','s']),
+    #         Clause(['g','-t','-s'])
+    #     ]
+    # )
 
-#print(sat)
 
 
-sat = parseFile('../InstanciasSAT/jnh1.cnf')
-# print(satTo3SAT(sat))
-# print(nextSAT(sat))
-# sat = SAT(
-#     [
-#         Clause(['-g','t'])
-#     ]
-# )
+sat = parseFile('../InstanciasSAT/test.cnf')
+
 twoXSAT = TwoXSAT()
 print(twoXSAT.toXSAT(sat,5))

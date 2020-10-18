@@ -63,6 +63,7 @@ class Clause:
             to_return = to_return + ("-" if not literal.value else "") + str(literal.name) + " ∨ "
         return to_return[:-3] + ")"
 
+
 class SAT:
 
     def __init__(self, clauses: list):

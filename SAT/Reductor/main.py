@@ -53,8 +53,14 @@ def main(argv):
         sat = parseFile(idir + '/test.cnf')
         twoXSAT = TwoXSAT()
         result = twoXSAT.toXSAT(sat, xsat)
+        resultDimacs = exportToDimacs(result)
+
+        f = open("../X-SAT/test.cnf", "w")
+        f.write(resultDimacs)
+        f.close()
+
         if verb:
-            print(exportToDimacs(result))
+            print(resultDimacs)
             print(result)
 
 

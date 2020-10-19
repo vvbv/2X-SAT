@@ -3,7 +3,7 @@
 import sys
 import getopt
 from TwoXSAT import TwoXSAT
-from tools import parseFile
+from tools import parseFile, exportToDimacs
 
 
 def showHelp(odir, idir, verb):
@@ -51,10 +51,11 @@ def main(argv):
     if xsat:
 
         sat = parseFile(idir + '/test.cnf')
-
         twoXSAT = TwoXSAT()
+        result = twoXSAT.toXSAT(sat, xsat)
         if verb:
-            print(twoXSAT.toXSAT(sat, xsat))
+            print(exportToDimacs(result))
+            print(result)
 
 
 if __name__ == '__main__':

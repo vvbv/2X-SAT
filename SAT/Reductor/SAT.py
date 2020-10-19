@@ -1,7 +1,7 @@
 class SATvar:
 
     def __init__(self, var_str: str):
-        self.name = var_str.replace('-','') if '-' in var_str else var_str
+        self.name = var_str.replace('-', '') if '-' in var_str else var_str
 
     @property
     def name(self) -> str:

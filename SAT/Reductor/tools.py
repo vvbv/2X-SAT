@@ -53,9 +53,29 @@ def exportToDimacs(satObj: SAT):
         nextIntLiteral = maxLiteralValue
         literalsConverted.append(nextIntLiteral)
 
-    # print(maxLiteralValue)
-    # print(literals)
-    # print(literalsToConvert)
-    # print(literalsConverted)
+    i = 0
+    for clause in satObj.clauses:
+        clauseDimacs = ""
+        for literal in clause.literals:
+            clauseDimacs += "" if literal.value else "-"
+            if isInteger(literal.name):
+                clauseDimacs += literal.name
+            else:
+                varIndex = literalsToConvert.index(literal.name)
+                clauseDimacs += str(literalsConverted[varIndex])
+            clauseDimacs += " "
+        clauseDimacs += "0"
+        if i < satObj.clauses.__len__() - 1:
+            clauseDimacs += "\n"
+        output += clauseDimacs
+        i += 1
 
     return output
+
+
+def isInteger(value):
+    try:
+        int(value)
+        return True
+    except ValueError:
+        return False

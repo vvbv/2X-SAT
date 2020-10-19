@@ -1,7 +1,9 @@
 #!/usr/bin/python3.7
 
 import sys
+import glob
 import getopt
+import ntpath
 from TwoXSAT import TwoXSAT
 from tools import parseFile, exportToDimacs
 
@@ -50,18 +52,21 @@ def main(argv):
 
     if xsat:
 
-        sat = parseFile(idir + '/test.cnf')
-        twoXSAT = TwoXSAT()
-        result = twoXSAT.toXSAT(sat, xsat)
-        resultDimacs = exportToDimacs(result)
+        files = glob.glob(idir + "/*.cnf")
+        for file in files:
+            filename = ntpath.basename(file)
 
-        f = open("../X-SAT/test.cnf", "w")
-        f.write(resultDimacs)
-        f.close()
+            sat = parseFile(file)
+            twoXSAT = TwoXSAT()
+            result = twoXSAT.toXSAT(sat, xsat)
+            resultDimacs = exportToDimacs(result)
 
-        if verb:
-            print(resultDimacs)
-            print(result)
+            f = open("../X-SAT/" + filename, "w")
+            f.write(resultDimacs)
+            f.close()
+
+            if verb:
+                print(resultDimacs)
 
 
 if __name__ == '__main__':

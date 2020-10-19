@@ -79,6 +79,8 @@ def main(argv):
 
             printLog("[ " + str(i) + " / " + str(countFiles) + " ] - " + filename + " ✅.")
 
+            i += 1
+
             if verb:
                 print(resultDimacs)
 

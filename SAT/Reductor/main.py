@@ -4,6 +4,7 @@ import sys
 import glob
 import getopt
 import ntpath
+from datetime import datetime
 from TwoXSAT import TwoXSAT
 from tools import parseFile, exportToDimacs
 
@@ -15,6 +16,10 @@ def showHelp(odir, idir, verb):
         "-o <output dir [default = '" + odir + "']> "
         "-v <verbose [default = '" + 'True' if verb else 'False' + "']>")
     sys.exit(2)
+
+
+def printLog(msg):
+    print("=> " + str(datetime.now()) + " >>> " + msg)
 
 
 def main(argv):
@@ -52,7 +57,14 @@ def main(argv):
 
     if xsat:
 
+        printLog("Staring [ SAT to " + str(xsat) + "-SAT ].")
+
         files = glob.glob(idir + "/*.cnf")
+        countFiles = files.__len__()
+
+        printLog("Number of files to convert: " + str(countFiles) + ".")
+
+        i = 1
         for file in files:
             filename = ntpath.basename(file)
 
@@ -64,6 +76,8 @@ def main(argv):
             f = open("../X-SAT/" + filename, "w")
             f.write(resultDimacs)
             f.close()
+
+            printLog("[ " + str(i) + " / " + str(countFiles) + " ] - " + filename + " ✅.")
 
             if verb:
                 print(resultDimacs)

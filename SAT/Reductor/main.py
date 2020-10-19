@@ -73,11 +73,13 @@ def main(argv):
             result = twoXSAT.toXSAT(sat, xsat)
             resultDimacs = exportToDimacs(result)
 
-            f = open("../X-SAT/" + filename, "w")
+            outFilename = filename.replace(".cnf", "-" + str(xsat) + "-SAT" + ".cnf")
+
+            f = open("../X-SAT/" + outFilename, "w")
             f.write(resultDimacs)
             f.close()
 
-            printLog("[ " + str(i) + " / " + str(countFiles) + " ] - " + filename + " ✅.")
+            printLog("[ " + str(i) + " / " + str(countFiles) + " ] - " + filename + " → " + outFilename + " ✅.")
 
             i += 1
 
